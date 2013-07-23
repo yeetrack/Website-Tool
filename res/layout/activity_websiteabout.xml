@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+     <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/purple"
+        android:text="关于站长工具"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="15sp"
+        android:textSize="@dimen/websiteDetail_title_margin"/>
+     
+     <TextView 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:textColor="@color/purple"
+         android:text="自己编写的站长工具，不会画图，界面比较简陋。其中的数据有直接调用接口得到的，有抓取百度、谷歌、gongju.baidu.com、http://tool.chinaz.com、和alexa的。部分界面做了信息 提取，放在自定义的页面中，有的是直接展示的webview，功能大致完成。如果遇到问题youthflies@126.com，欢迎光临我的网站 (易踪网)yeetrack.com"
+         android:layout_marginTop="30sp"
+         android:layout_marginLeft="6dip"
+         android:textSize="@dimen/websiteDetail_content_margin"/>
+    
+
+</LinearLayout>

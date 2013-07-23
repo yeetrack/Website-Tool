@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/detailResultTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/purple"
+        android:text="PR检测页面"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="15sp"
+        android:textSize="@dimen/websiteDetail_title_margin"/>
+    
+    <TextView 
+        android:id="@+id/prGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/websiteDetail_title_margin"
+        android:text="Google PR: "/>
+
+    <TextView
+        android:id="@+id/prBaidu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15sp"
+        android:gravity="center_horizontal"
+        android:text="百度权重: "
+        android:textColor="@color/blue"
+        android:textSize="@dimen/websiteDetail_title_margin" />
+
+    <TextView 
+        android:id="@+id/prSogou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/blue"
+        android:layout_marginTop="15sp"
+        android:textSize="@dimen/websiteDetail_title_margin"
+        android:text="搜狗评级: "/>
+    <TextView 
+        android:id="@+id/prAlexa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/blue"
+        android:layout_marginTop="15sp"
+        android:textSize="@dimen/websiteDetail_title_margin"
+        android:text="Alexa排名: "/>
+
+</LinearLayout>

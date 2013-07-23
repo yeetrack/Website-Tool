@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/alexaPage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/purple"
+        android:text="alexa页面"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="15sp"
+        android:textSize="@dimen/websiteDetail_title_margin"/>
+    
+    <TableLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip">
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView 
+        		android:id="@+id/alexaTitle"
+        		android:layout_width="match_parent"
+        		android:gravity="left"
+        		android:textColor="@color/purple"
+        		android:layout_span="4"
+        		android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="站点名称: "/>
+            <TextView 
+                android:id="@+id/alexaDomainName"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="综合排名: "/>
+            <TextView 
+                android:id="@+id/alexaCurrentRank"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+            
+         </TableRow>
+         <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="反向链接: "/>
+            <TextView 
+                android:id="@+id/alexaReverseLink"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下期排名: "/>
+            <TextView 
+                android:id="@+id/alexaNextRank"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+            
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所属国家: "/>
+            <TextView 
+                android:id="@+id/alexaBelongToCoun"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="收录日期: "/>
+            <TextView 
+                android:id="@+id/alexaIncludeDate"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="编码方式: "/>
+            <TextView 
+                android:id="@+id/alexaCharset"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="成人内容: "/>
+            <TextView 
+                android:id="@+id/alexaAdult"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网站站长: "/>
+            <TextView 
+                android:id="@+id/alexaAdministrator"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系电话: "/>
+            <TextView 
+                android:id="@+id/alexaPhone"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="访问速度: "/>
+            <TextView 
+                android:id="@+id/alexaVisitSpeed"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电子信箱: "/>
+            <TextView 
+                android:id="@+id/alexaEmail"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详细地址: "/>
+            <TextView 
+                android:id="@+id/alexaAddress"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="1" 
+                android:text="所属目录: "/>
+            <TextView 
+                android:id="@+id/alexaBelongToList"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网站简介: "/>
+            <TextView 
+                android:id="@+id/alexaDomainSummary"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_span="3"
+                android:layout_height="wrap_content"/>  
+        </TableRow>
+    </TableLayout>
+    <TableLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip">
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView 
+                android:id="@+id/alexaTitle2"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:textColor="@color/purple"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当日排名: "/>
+            <TextView 
+                android:id="@+id/alexaTodayRank"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+                
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="排名变化趋势: "/>
+            <TextView 
+                android:id="@+id/alexaTodayGo"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一周平均排名: "/>
+            <TextView 
+                android:id="@+id/alexaWeekRank"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+                
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="排名变化趋势: "/>
+            <TextView 
+                android:id="@+id/alexaWeekGo"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一月平均排名: "/>
+            <TextView 
+                android:id="@+id/alexaMonthRank"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+                
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="排名变化趋势: "/>
+            <TextView 
+                android:id="@+id/alexaMonthGo"
+                android:layout_width="wrap_content"
+                
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="三月平均排名: "/>
+            <TextView 
+                android:id="@+id/alexaThreeMonthRank"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+                
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="排名变化趋势: "/>
+            <TextView 
+                android:id="@+id/alexaThreeMonthGo"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content"/>  
+        </TableRow>
+    </TableLayout>
+    
+    <TableLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:paddingLeft="10dip">
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView 
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:textColor="@color/purple"
+                android:text="根据 网站排名 统计数据估算网站 IP、PV 值，以下数据仅做参考之用、根据网站用户类型和比例不同会产生不同误差率"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日均 IP 访问量[一周平均 ]: "/>
+            <TextView 
+                android:id="@+id/alexaDayIP"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"/>
+        </TableRow>
+        <TableRow 
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dip"
+            android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日均 PV 浏览量[一周平均 ]: "/>
+            <TextView 
+                android:id="@+id/alexaDayPV"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
+</ScrollView>

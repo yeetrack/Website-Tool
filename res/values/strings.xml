@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">站长工具</string>
+    <string name="action_settings">设置</string>
+    <string name="welcome">站长工具</string>
+    <string name="domain_name">yeetrack.com</string>
+    <string name="submitBtn_name">综合查询</string>
+    <string name="friendLink_name">友链查询</string>
+    <string name="integratedQuery_name">综合查询</string>
+    <string name="websiteFast_name">网站测速</string>
+    <string name="websitePing_name">Ping检测</string>
+    <string name="route_name">路由追踪</string>
+    <string name="dns_name">DNS检测</string>
+    <string name="pageQuery_name">页面检测</string>
+    <string name="prQuery_name">PR值查询</string>
+    <string name="deadLink_name">死链检测</string>
+    <string name="alexa_name">Alexa排名</string>
+    <string name="spider_name">蜘蛛模拟</string>
+    <string name="whois_name">Whois查询</string>
+    <string name="domaindetail_name">域名详细信息</string>
+    <string name="websiteTitle_name">网站标题：</string>
+    <string name="websiteDesc_name">网站描述：</string>
+    <string name="websiteSEO_name">SEO信息：</string>
+    <string name="websiteIP_name">域名IP：</string>
+    <string name="websiteGCD_name">域名备案：</string>
+    <string name="websiteSpider_name">网站收录：</string>
+    <string name="googleCount_name">谷歌：</string>
+    <string name="baiduCount_name">百度：</string>
+    <string name="so360Count_name">360：</string>
+    <string name="bingCount_name">bing：</string>
+    <string name="sosoCount_name">搜搜：</string>
+    <string name="yahooCount_name">雅虎：</string>
+
+</resources>
