@@ -3,7 +3,8 @@
  */
 package com.yeetrack.websitetool;
 
-import com.yeetrac.spider.AlexaSpider;
+
+import com.yeetrack.spider.AlexaSpider;
 
 import android.app.Activity;
 import android.content.Intent;

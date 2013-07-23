@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yeetrac.spider;
+package com.yeetrack.spider;
 
 import java.io.IOException;
 

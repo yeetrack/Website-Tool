@@ -6,7 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.yeetrac.spider.WhoisSpider;
+import com.yeetrack.spider.WhoisSpider;
 
 import android.app.Activity;
 import android.content.Intent;

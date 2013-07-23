@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yeetrac.spider;
+package com.yeetrack.spider;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

@@ -4,7 +4,9 @@
 package com.yeetrack.websitetool;
 
 import java.util.List;
-import com.yeetrac.spider.DnsSpider;
+
+import com.yeetrack.spider.DnsSpider;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;

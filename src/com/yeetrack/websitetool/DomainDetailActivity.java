@@ -3,16 +3,17 @@
  */
 package com.yeetrack.websitetool;
 
-import com.yeetrac.spider.WebsiteBaiduSpider;
-import com.yeetrac.spider.WebsiteBingSpider;
-import com.yeetrac.spider.WebsiteGCDSpider;
-import com.yeetrac.spider.WebsiteGooleSpider;
-import com.yeetrac.spider.WebsiteIPSpider;
-import com.yeetrac.spider.WebsitePageSpider;
-import com.yeetrac.spider.WebsiteSEOSpider;
-import com.yeetrac.spider.WebsiteSoSpider;
-import com.yeetrac.spider.WebsiteSosoSpider;
-import com.yeetrac.spider.WebsiteYahooSpider;
+
+import com.yeetrack.spider.WebsiteBaiduSpider;
+import com.yeetrack.spider.WebsiteBingSpider;
+import com.yeetrack.spider.WebsiteGCDSpider;
+import com.yeetrack.spider.WebsiteGooleSpider;
+import com.yeetrack.spider.WebsiteIPSpider;
+import com.yeetrack.spider.WebsitePageSpider;
+import com.yeetrack.spider.WebsiteSEOSpider;
+import com.yeetrack.spider.WebsiteSoSpider;
+import com.yeetrack.spider.WebsiteSosoSpider;
+import com.yeetrack.spider.WebsiteYahooSpider;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -3,7 +3,7 @@
  */
 package com.yeetrack.websitetool;
 
-import com.yeetrac.spider.SpiderSpiser;
+import com.yeetrack.spider.SpiderSpiser;
 
 import android.app.Activity;
 import android.content.Intent;

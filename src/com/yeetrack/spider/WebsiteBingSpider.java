@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yeetrac.spider;
+package com.yeetrack.spider;
 
 import java.io.IOException;
 
@@ -10,39 +10,39 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-
-
 /**
  * @author xuemeng
- * 查询域名谷歌收录页面个数
+ * 抓取网站baidu收录个数
  */
-public class WebsiteGooleSpider
+public class WebsiteBingSpider
 {
-	private String googleCount;
 	private String domain;
+	private String bingCount;
 	
-	public WebsiteGooleSpider(String domain)
+	public WebsiteBingSpider(String domain)
 	{
 		this.domain = domain;
 		spider();
 	}
+	
 	public void spider()
 	{
 		DefaultHttpClient httpClient = HttpTool.getHttpClientInstance();
-		HttpGet googleGet = new HttpGet("http://www.google.com/search?q=site:"+domain);
+		//http://www.so.com/s?q=site:"+domain);
+		//http://www.baidu.com/s?wd=site%3A"+domain);
+		HttpGet bingGet = new HttpGet("http://cn.bing.com/search?q=site%3A"+domain);
 		try
         {
-	        HttpResponse googleResponse = httpClient.execute(googleGet);
-	        String response = HttpTool.getEntityContent(googleResponse.getEntity());
-	        //<div id="resultStats">找到约 747 条结果<nobr>  （用时 0.17 秒）&nbsp;</nobr></div>
-	        //<div id="resultStats">获得 2 条结果<nobr>  （用时 0.11 秒）&nbsp;</nobr></div>
-	        int googleStart = response.indexOf("<div id=\"resultStats\">");
-	        if(googleStart == -1)
+	        HttpResponse bingResponse = httpClient.execute(bingGet);
+	        String response = HttpTool.getEntityContent(bingResponse.getEntity());
+	        //<div class="sb_rc_btm sb_rc_btm_p">16 条结果</div>
+	        int baiduStart = response.indexOf("<div class=\"sb_rc_btm sb_rc_btm_p\">");
+	        if(baiduStart == -1)
 	        {
-	        	googleCount = "0";
+	        	bingCount = "0";
 	        	return;
 	        }
-	        String countString = response.substring(googleStart+22);
+	        String countString = response.substring(baiduStart+35);
 	        StringBuffer countBuffer = new StringBuffer();
 	        int offset = 0;
 	        while (true)
@@ -53,7 +53,7 @@ public class WebsiteGooleSpider
 	        		break;
 	        	offset++;
             }
-	        googleCount = countBuffer.toString();
+	        bingCount = countBuffer.toString();
         } catch (ClientProtocolException e)
         {
 	        // TODO Auto-generated catch block
@@ -68,8 +68,8 @@ public class WebsiteGooleSpider
         }
 	}
 	
-	public String getGoogleCount()
+	public String getBingCount()
 	{
-		return googleCount;
+		return bingCount;
 	}
 }

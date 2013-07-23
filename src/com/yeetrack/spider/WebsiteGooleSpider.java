@@ -1,4 +1,7 @@
-package com.yeetrac.spider;
+/**
+ * 
+ */
+package com.yeetrack.spider;
 
 import java.io.IOException;
 
@@ -7,39 +10,39 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+
+
 /**
  * @author xuemeng
- * 抓取网站yahoo收录个数
+ * 查询域名谷歌收录页面个数
  */
-public class WebsiteYahooSpider
+public class WebsiteGooleSpider
 {
+	private String googleCount;
 	private String domain;
-	private String yahooCount;
 	
-	public WebsiteYahooSpider(String domain)
+	public WebsiteGooleSpider(String domain)
 	{
 		this.domain = domain;
 		spider();
 	}
-	
 	public void spider()
 	{
 		DefaultHttpClient httpClient = HttpTool.getHttpClientInstance();
-		//http://www.so.com/s?q=site:"+domain);
-		//http://www.baidu.com/s?wd=site%3A"+domain);
-		HttpGet yahooGet = new HttpGet("http://www.yahoo.cn/s?q=site:"+domain);
+		HttpGet googleGet = new HttpGet("http://www.google.com/search?q=site:"+domain);
 		try
         {
-	        HttpResponse yahooResponse = httpClient.execute(yahooGet);
-	        String response = HttpTool.getEntityContent(yahooResponse.getEntity());
-	        //<div class="s_info">找到相关网页约205条</div>
-	        int yahooStart = response.indexOf("<div class=\"s_info\">找到");
-	        if(yahooStart == -1)
+	        HttpResponse googleResponse = httpClient.execute(googleGet);
+	        String response = HttpTool.getEntityContent(googleResponse.getEntity());
+	        //<div id="resultStats">找到约 747 条结果<nobr>  （用时 0.17 秒）&nbsp;</nobr></div>
+	        //<div id="resultStats">获得 2 条结果<nobr>  （用时 0.11 秒）&nbsp;</nobr></div>
+	        int googleStart = response.indexOf("<div id=\"resultStats\">");
+	        if(googleStart == -1)
 	        {
-	        	yahooCount = "0";
+	        	googleCount = "0";
 	        	return;
 	        }
-	        String countString = response.substring(yahooStart+22);
+	        String countString = response.substring(googleStart+22);
 	        StringBuffer countBuffer = new StringBuffer();
 	        int offset = 0;
 	        while (true)
@@ -50,7 +53,7 @@ public class WebsiteYahooSpider
 	        		break;
 	        	offset++;
             }
-	        yahooCount = countBuffer.toString();
+	        googleCount = countBuffer.toString();
         } catch (ClientProtocolException e)
         {
 	        // TODO Auto-generated catch block
@@ -65,8 +68,8 @@ public class WebsiteYahooSpider
         }
 	}
 	
-	public String getYahooCount()
+	public String getGoogleCount()
 	{
-		return yahooCount;
+		return googleCount;
 	}
 }

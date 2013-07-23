@@ -13,8 +13,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.yeetrac.spider.DeadLinkSpider;
-import com.yeetrac.spider.HttpTool;
+import com.yeetrack.spider.DeadLinkSpider;
+import com.yeetrack.spider.HttpTool;
+
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.yeetrac.spider;
+package com.yeetrack.spider;
 
 import java.io.IOException;
 
@@ -12,14 +9,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  * @author xuemeng
- * 抓取网站baidu收录个数
+ * 抓取网站yahoo收录个数
  */
-public class WebsiteBingSpider
+public class WebsiteYahooSpider
 {
 	private String domain;
-	private String bingCount;
+	private String yahooCount;
 	
-	public WebsiteBingSpider(String domain)
+	public WebsiteYahooSpider(String domain)
 	{
 		this.domain = domain;
 		spider();
@@ -30,19 +27,19 @@ public class WebsiteBingSpider
 		DefaultHttpClient httpClient = HttpTool.getHttpClientInstance();
 		//http://www.so.com/s?q=site:"+domain);
 		//http://www.baidu.com/s?wd=site%3A"+domain);
-		HttpGet bingGet = new HttpGet("http://cn.bing.com/search?q=site%3A"+domain);
+		HttpGet yahooGet = new HttpGet("http://www.yahoo.cn/s?q=site:"+domain);
 		try
         {
-	        HttpResponse bingResponse = httpClient.execute(bingGet);
-	        String response = HttpTool.getEntityContent(bingResponse.getEntity());
-	        //<div class="sb_rc_btm sb_rc_btm_p">16 条结果</div>
-	        int baiduStart = response.indexOf("<div class=\"sb_rc_btm sb_rc_btm_p\">");
-	        if(baiduStart == -1)
+	        HttpResponse yahooResponse = httpClient.execute(yahooGet);
+	        String response = HttpTool.getEntityContent(yahooResponse.getEntity());
+	        //<div class="s_info">找到相关网页约205条</div>
+	        int yahooStart = response.indexOf("<div class=\"s_info\">找到");
+	        if(yahooStart == -1)
 	        {
-	        	bingCount = "0";
+	        	yahooCount = "0";
 	        	return;
 	        }
-	        String countString = response.substring(baiduStart+35);
+	        String countString = response.substring(yahooStart+22);
 	        StringBuffer countBuffer = new StringBuffer();
 	        int offset = 0;
 	        while (true)
@@ -53,7 +50,7 @@ public class WebsiteBingSpider
 	        		break;
 	        	offset++;
             }
-	        bingCount = countBuffer.toString();
+	        yahooCount = countBuffer.toString();
         } catch (ClientProtocolException e)
         {
 	        // TODO Auto-generated catch block
@@ -68,8 +65,8 @@ public class WebsiteBingSpider
         }
 	}
 	
-	public String getBingCount()
+	public String getYahooCount()
 	{
-		return bingCount;
+		return yahooCount;
 	}
 }

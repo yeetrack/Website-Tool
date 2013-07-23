@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yeetrac.spider;
+package com.yeetrack.spider;
 
 import java.io.IOException;
 
@@ -12,14 +12,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  * @author xuemeng
- * 抓取网站搜搜收录个数
+ * 抓取网站360收录个数
  */
-public class WebsiteSosoSpider
+public class WebsiteSoSpider
 {
 	private String domain;
-	private String sosoCount;
+	private String soCount;
 	
-	public WebsiteSosoSpider(String domain)
+	public WebsiteSoSpider(String domain)
 	{
 		this.domain = domain;
 		spider();
@@ -28,19 +28,21 @@ public class WebsiteSosoSpider
 	public void spider()
 	{
 		DefaultHttpClient httpClient = HttpTool.getHttpClientInstance();
-		HttpGet sosoGet = new HttpGet("http://www.soso.com/q?w=site%3A"+domain);
+		//http://www.so.com/s?q=site:"+domain);
+		//http://www.baidu.com/s?wd=site%3A"+domain);
+		HttpGet soGet = new HttpGet("http://www.so.com/s?q=site:"+domain);
 		try
         {
-	        HttpResponse googleResponse = httpClient.execute(sosoGet);
+	        HttpResponse googleResponse = httpClient.execute(soGet);
 	        String response = HttpTool.getEntityContent(googleResponse.getEntity());
-	        //<div id="sInfo">搜搜为您找到78条相关结果</div>
-	        int sosoStart = response.indexOf("<div id=\"sInfo\">搜");
-	        if(sosoStart == -1)
+	        //<p class="ws-total">找到相关结果约32个</p>
+	        int soStart = response.indexOf("<p class=\"ws-total\">找");
+	        if(soStart == -1)
 	        {
-	        	sosoCount = "0";
+	        	soCount = "0";
 	        	return;
 	        }
-	        String countString = response.substring(sosoStart+17);
+	        String countString = response.substring(soStart+22);
 	        StringBuffer countBuffer = new StringBuffer();
 	        int offset = 0;
 	        while (true)
@@ -51,7 +53,7 @@ public class WebsiteSosoSpider
 	        		break;
 	        	offset++;
             }
-	        sosoCount = countBuffer.toString();
+	        soCount = countBuffer.toString();
         } catch (ClientProtocolException e)
         {
 	        // TODO Auto-generated catch block
@@ -66,8 +68,8 @@ public class WebsiteSosoSpider
         }
 	}
 	
-	public String getsosoCount()
+	public String getSoCount()
 	{
-		return sosoCount;
+		return soCount;
 	}
 }
