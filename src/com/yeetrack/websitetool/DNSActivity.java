@@ -5,6 +5,8 @@ package com.yeetrack.websitetool;
 
 import java.util.List;
 
+import android.view.View;
+import android.widget.ImageButton;
 import com.yeetrack.spider.DnsSpider;
 
 import android.app.Activity;
@@ -28,7 +30,9 @@ public class DNSActivity extends Activity
 	private String domain;
 	private DnsSpider dnsSpider;
 	private List<List<String>> result;
-	private TableLayout tableLayout; 
+	private TableLayout tableLayout;
+    private ImageButton backButton;
+    private ImageButton saveButton;
 	private Handler handler = new Handler()
 	{
         public void handleMessage(Message msg)
@@ -72,8 +76,32 @@ public class DNSActivity extends Activity
 	    Intent intent = this.getIntent();
 	    tableLayout = (TableLayout)findViewById(R.id.dnsTable);
 	    
+	    backButton = (ImageButton)findViewById(R.id.dnsBackButton);
+	    saveButton = (ImageButton)findViewById(R.id.dnsSaveButton);
+	    
 	    Bundle bundle = intent.getBundleExtra("data");
 	    domain = bundle.getString("domain");
+
+        //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.dnsBackButton:
+                        DNSActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.dnsSaveButton:
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
 	    
 	    new Thread(dnsRunnable).start();
 	    setProgressBarIndeterminateVisibility(true);

@@ -8,9 +8,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -18,6 +21,9 @@ import android.webkit.WebViewClient;
  */
 public class SpeedActivity extends Activity
 {
+	private ImageButton backButton;
+	private ImageButton saveButton;
+	
 	private String domain;
 	
 	private WebView webView;
@@ -34,6 +40,34 @@ public class SpeedActivity extends Activity
 	    domain = bundle.getString("domain");
 	    webView = (WebView)findViewById(R.id.speedWebView);
 	    webView.getSettings().setJavaScriptEnabled(true);  
+	    
+	    backButton = (ImageButton)findViewById(R.id.websiteSpeedBackButton);
+	    saveButton = (ImageButton)findViewById(R.id.websiteSpeedSaveButton);
+	    
+	  //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.websiteSpeedBackButton:
+                    	SpeedActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.websiteSpeedSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-speed", SpeedActivity.this))
+                    		Toast.makeText(SpeedActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(SpeedActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
 	    
 
 	    webView.loadUrl("http://webscan.360.cn/tools/http");

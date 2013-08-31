@@ -13,8 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.*;
+
 public class MainActivity extends Activity
 {
+    String currentPath;
 	/**
 	 * 域名输入框
 	 */
@@ -89,8 +92,21 @@ public class MainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+        currentPath = getApplicationContext().getFilesDir().getAbsolutePath();
 		domainEditText = (EditText)findViewById(R.id.domainInput);
-		integratedButton = (Button)findViewById(R.id.domainSubmitButton);
+        //默认读取files目录下的domain.txt文件中的域名
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(currentPath+"/domain.txt");
+            BufferedReader br = new BufferedReader(fileReader);
+            String  name = br.readLine();
+            domainEditText.setText(name);
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            //没有该文件，使用默认的yeetrack.com
+        } catch (IOException e) {
+        }
+        integratedButton = (Button)findViewById(R.id.domainSubmitButton);
 		friendLinkButton = (Button)findViewById(R.id.friendLinkBtn);
 		websiteFastButton = (Button)findViewById(R.id.websiteFastBtn);
 		pingButton = (Button)findViewById(R.id.websitePingBtn);
@@ -128,6 +144,9 @@ public class MainActivity extends Activity
 				// 需要启动一个页面，来展示结果
 				if(checkDomain())
 				{
+                    //将域名写入文件
+                    writeDomain2Disk();
+
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
 					detailBundle.putString("domain", domainString);
@@ -368,6 +387,20 @@ public class MainActivity extends Activity
 
 	}
 
+    /**
+     * 将用户搜索的域名保存到本地，下次方便从本地读取
+     */
+    void writeDomain2Disk()
+    {
+        try {
+            FileWriter fileWriter = new FileWriter(currentPath+"/domain.txt");
+            fileWriter.write(domainEditText.getText().toString());
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{

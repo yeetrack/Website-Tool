@@ -15,9 +15,12 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -25,6 +28,8 @@ import android.widget.TextView;
  */
 public class WhoisActivity extends Activity
 {
+	private ImageButton backButton;
+	private ImageButton saveButton;
 
 	private String domain;
 	private TextView domainTextView;
@@ -91,6 +96,34 @@ public class WhoisActivity extends Activity
 	    emailImageView = (ImageView)findViewById(R.id.whoisEmailImage);
 	    emailServerTextView = (TextView)findViewById(R.id.whoisEmail);
 	    phoneTextView = (TextView)findViewById(R.id.whoisPhone);
+	    
+	    backButton = (ImageButton)findViewById(R.id.websiteWhoisBackButton);
+	    saveButton = (ImageButton)findViewById(R.id.websiteWhoisSaveButton);
+	    
+	  //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.websiteWhoisBackButton:
+                    	WhoisActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.websiteWhoisSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-whois", WhoisActivity.this))
+                    		Toast.makeText(WhoisActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(WhoisActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
 	    
 	    new Thread(whoisRunnable).start();
 	    setProgressBarIndeterminateVisibility(true);

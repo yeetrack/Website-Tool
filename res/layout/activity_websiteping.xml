@@ -3,6 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageButton
+                android:id="@+id/websitePingBackButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/back"
+                android:layout_alignParentLeft="true">
+        </ImageButton>
+
+
+
+        <ImageButton
+                android:id="@+id/websitePingSaveButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+            	android:background="@drawable/save">
+        </ImageButton>
+
+    </RelativeLayout>
+    
     <TextView 
         android:id="@+id/detailResultTitle"
         android:layout_width="fill_parent"

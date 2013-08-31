@@ -22,7 +22,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -30,7 +33,9 @@ import android.widget.TextView;
  */
 public class DomainDetailActivity extends Activity
 {
-
+	private ImageButton backButton;
+	private ImageButton saveButton;
+	
 	private TextView titleTextView;
 	//网站标题结果
 	private TextView titleEditText;
@@ -134,6 +139,8 @@ public class DomainDetailActivity extends Activity
 	    Bundle bundle = intent.getBundleExtra("data");
 	    domain = bundle.getString("domain");
 	    
+	    backButton = (ImageButton)findViewById(R.id.domainDetailBackButton);
+	    saveButton = (ImageButton)findViewById(R.id.domainDetailSaveButton);
 	    
 	    titleTextView = (TextView)findViewById(R.id.detailResultTitle);
 	    titleEditText= (TextView)findViewById(R.id.websiteTitleResult);
@@ -160,6 +167,32 @@ public class DomainDetailActivity extends Activity
 	    bingTextView.setText("加载中...");
 	    sosoTextView.setText("加载中...");
 	    yahooTextView.setText("加载中...");
+	    
+	  //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.domainDetailBackButton:
+                        DomainDetailActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.domainDetailSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-domainDetail", DomainDetailActivity.this))
+                    		Toast.makeText(DomainDetailActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(DomainDetailActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
+	    
 	    new Thread(titleRunnable).start();
 	    new Thread(seoRunnable).start();
 	    new Thread(ipRunnable).start();

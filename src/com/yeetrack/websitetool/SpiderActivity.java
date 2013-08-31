@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -21,6 +24,9 @@ import android.widget.TextView;
 public class SpiderActivity extends Activity
 {
 
+	private ImageButton backButton;
+	private ImageButton saveButton;
+	
 	private String domain;
 	private TextView titleTextView;
 	private TextView h1TextView;
@@ -64,6 +70,34 @@ public class SpiderActivity extends Activity
 	    h2TextView = (TextView)findViewById(R.id.spiderH2);
 	    h3TextView = (TextView)findViewById(R.id.spiderH3);
 	    bodyTextView = (TextView)findViewById(R.id.spiderBody);
+	    
+	    backButton = (ImageButton)findViewById(R.id.spiderBackButton);
+	    saveButton = (ImageButton)findViewById(R.id.spiderSaveButton);
+	    
+	  //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.spiderBackButton:
+                        SpiderActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.spiderSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-spider", SpiderActivity.this))
+                    		Toast.makeText(SpiderActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(SpiderActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
 	    
 	    new Thread(spiderRunnable).start();
 	    setProgressBarIndeterminateVisibility(true);

@@ -8,6 +8,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
+import android.view.View;
+import android.widget.ImageButton;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -30,6 +32,7 @@ import android.view.Window;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -44,6 +47,8 @@ public class DeadLinkActivity extends Activity
 	
 	private List<List<String>> resultList;
 	private TableLayout tableLayout;
+    private ImageButton backButton;
+    private ImageButton saveButton;
 	
 	private DeadLinkSpider deadLinkSpider;
 	
@@ -111,6 +116,33 @@ public class DeadLinkActivity extends Activity
 	    Bundle bundle = intent.getBundleExtra("data");
 	    domain = bundle.getString("domain");
 	    tableLayout = (TableLayout)findViewById(R.id.deadLinkTable);
+        backButton = (ImageButton)findViewById(R.id.deadLinkBackButton);
+        saveButton = (ImageButton)findViewById(R.id.deadLinkSaveButton);
+
+        //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.deadLinkBackButton:
+                        DeadLinkActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.deadLinkSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-deadlink", DeadLinkActivity.this))
+                    		Toast.makeText(DeadLinkActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(DeadLinkActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
 	    
 	    new Thread(urlListRunnable).start();
 	    setProgressBarIndeterminateVisibility(true);

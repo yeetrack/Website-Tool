@@ -16,10 +16,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -27,6 +30,9 @@ import android.widget.TextView;
  */
 public class FriendLinkActivity extends Activity
 {
+	private ImageButton backButton;
+	private ImageButton saveButton;
+	
 	private String domain;
 	/**
 	 * 百度收录个数
@@ -114,6 +120,9 @@ public class FriendLinkActivity extends Activity
 	    Bundle bundle = intent.getBundleExtra("data");
 	    domain = bundle.getString("domain");
 	    
+	    backButton = (ImageButton)findViewById(R.id.friendLinkBackButton);
+	    saveButton = (ImageButton)findViewById(R.id.friendLinkSaveButton);
+	    
 	    baiduCountTextView = (TextView)findViewById(R.id.friendLinkbaiduCount);
 	    baiduMirrorTextView = (TextView)findViewById(R.id.friendLinkbaiduMirror);
 	    prTextView = (TextView)findViewById(R.id.friendLinkPR);
@@ -123,6 +132,32 @@ public class FriendLinkActivity extends Activity
 	    baiduHomeTextView = (TextView)findViewById(R.id.friendLinkBaiduHome);
 	    baiduRankTextView = (TextView)findViewById(R.id.friendLinkBaiduRank);
 	    listView = (ListView)findViewById(R.id.friendLinkOutLinkListView);
+	    
+	    //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.friendLinkBackButton:
+                        FriendLinkActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.friendLinkSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-domainDetail", FriendLinkActivity.this))
+                    		Toast.makeText(FriendLinkActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(FriendLinkActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
+	    
 
 	    new Thread(friendLinkRunnable).start();
 	    

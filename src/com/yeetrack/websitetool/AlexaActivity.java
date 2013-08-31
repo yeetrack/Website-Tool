@@ -3,6 +3,9 @@
  */
 package com.yeetrack.websitetool;
 
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.yeetrack.spider.AlexaSpider;
 
@@ -23,7 +26,18 @@ public class AlexaActivity extends Activity
 {
 
 	private String domain;
-	private TextView alexaTitleTextView;
+    /**
+     * 后退按钮
+     * */
+    private ImageButton backButton;
+    /**
+     *         分享按钮
+     **/
+    private ImageButton saveButton;
+    /**
+     * refresh button
+     */
+     private TextView alexaTitleTextView;
 	private TextView alexaDomainTextView;
 	private TextView alexaAdministratorTextView;
 	private TextView alexaEmailTextView;
@@ -128,7 +142,10 @@ public class AlexaActivity extends Activity
 	    // TODO Auto-generated method stub
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_alexarank);
-	    
+
+        backButton = (ImageButton)findViewById(R.id.alexaBackButton);
+       // shareButton = (ImageButton)findViewById(R.id.alexaShareButton);
+        saveButton = (ImageButton)findViewById(R.id.alexaSaveButton);
 	    alexaTitleTextView = (TextView)findViewById(R.id.alexaTitle);
 	    alexaDomainTextView = (TextView)findViewById(R.id.alexaDomainName);
 	    alexaAdministratorTextView = (TextView)findViewById(R.id.alexaAdministrator);
@@ -160,7 +177,34 @@ public class AlexaActivity extends Activity
 	    Intent intent = this.getIntent();
 	    Bundle bundle = intent.getBundleExtra("data");
 	    domain = bundle.getString("domain");
-	    
+
+        //定义按钮监听匿名类
+        View.OnClickListener onClickListener = new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(v.getId())
+                {
+                    //点击了后退按钮
+                    case R.id.alexaBackButton:
+                        AlexaActivity.this.finish();
+                        break;
+                    //点击了保存按钮
+                    case R.id.alexaSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-alexa", AlexaActivity.this))
+                    		Toast.makeText(AlexaActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(AlexaActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        backButton.setOnClickListener(onClickListener);
+        saveButton.setOnClickListener(onClickListener);
+
+
+
 	    new Thread(alexaRunnable).start();
     }
 	
