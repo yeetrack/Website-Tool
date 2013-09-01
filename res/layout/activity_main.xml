@@ -1,115 +1,235 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
-	
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/websiteDetail_title_margin"
-        android:text="@string/welcome" />
-
-    <EditText 
-        	android:id="@+id/domainInput"
-        	android:singleLine="true"
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:text="@string/domain_name"/>
-    <Button
-        	android:id="@+id/domainSubmitButton"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_gravity="right"
-        	android:gravity="right"
-        	android:text="@string/submitBtn_name" /> 		
-
-    <TableLayout 
+    android:layout_height="match_parent" >
+    
+    <TabHost 
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TableRow 
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal">
-            <Button 
-                android:id="@+id/friendLinkBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/friendLink_name"/>
-            <Button 
-                android:id="@+id/websiteFastBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/websiteFast_name"/>
-            <Button 
-                android:id="@+id/websitePingBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/websitePing_name"/>
-        </TableRow>
-        <TableRow
+    	android:layout_height="match_parent">
+    	
+        
+        
+        <FrameLayout 
+            android:id="@android:id/tabcontent"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-            <Button 
-                android:id="@+id/routeBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/route_name"/>
-            <Button 
-                android:id="@+id/dnsBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dns_name"/>
-            <Button 
-                android:id="@+id/pageBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pageQuery_name"/>
-        </TableRow>
-        <TableRow
-			android:layout_width="match_parent"
-        	android:layout_height="wrap_content">
-            <Button 
-                android:id="@+id/prBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prQuery_name"/>
-            <Button 
-                android:id="@+id/deadLinkBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/deadLink_name"/>
-            <Button 
-                android:id="@+id/alexaBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/alexa_name"/>
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-        	android:layout_height="wrap_content">
-            <Button 
-                android:id="@+id/visitBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="直接访问"/>
-            <Button 
-                android:id="@+id/spiderBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/spider_name"/>
-            <Button 
-                android:id="@+id/whoisBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/whois_name"/>
-        </TableRow>
-    </TableLayout>
+            android:layout_height="match_parent">
+    		<!-- 域名注册标签页 -->
+    		<RelativeLayout 
+        		android:id="@+id/domainRegistTab"
+        		android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:orientation="vertical">
+
+        		<TextView
+        		    android:id="@+id/domainRegisTabTitle"
+        		    android:layout_width="match_parent"
+        		    android:layout_height="wrap_content"
+        		    android:gravity="center_horizontal"
+        		    android:text="域名检测"
+        		    android:textColor="@color/purple"
+        		    android:textSize="@dimen/websiteDetail_title_margin"
+        		    android:paddingTop="20dp" />
+
+        		<EditText 
+            		android:id="@+id/domainRegistInput"
+            		android:layout_width="wrap_content"
+            		android:layout_height="wrap_content"
+            		android:layout_below="@id/domainRegisTabTitle"
+            		android:textSize="30sp"
+            		android:text="yeetrack"
+            		android:paddingTop="50dp"
+            		android:layout_marginLeft="20dp"/>
+        		<TextView 
+        		    android:id="@+id/domainRegistInputPrefix"
+        		    android:layout_width="wrap_content"
+        		    android:layout_height="wrap_content"
+        		    android:text=".com"
+        		    android:textSize="30sp"
+        		    android:paddingTop="50dp"
+        		    android:layout_toRightOf="@id/domainRegistInput"
+        		    android:layout_below="@id/domainRegisTabTitle"/>
+        		<Button 
+            		android:id="@+id/domainRegistSubmitButton"
+            		android:layout_width="wrap_content"
+            		android:layout_height="wrap_content"
+            		android:layout_below="@id/domainRegistInput"
+            		android:layout_alignParentRight="true"
+            		android:padding="20dp"
+            		android:text="提交查询"/>
+        		<TextView 
+        		    android:layout_width="wrap_content"
+        		    android:layout_height="wrap_content"
+        		    android:layout_below="@id/domainRegistSubmitButton"
+        		    android:paddingTop="40dp"
+        		    android:textSize="20sp"
+        		    android:text="     检测域名是否被注册，包括com、net、org、cn、me、biz、co、gov.cn、org.cn、中国、net.cn、name、info、tv、so、mobi、cc、tel、asia."/>
+    		</RelativeLayout>
+    		<!-- 域名注册标签页结束 -->
+    
+			<!-- 站长工具Tab页 -->
+			<LinearLayout
+    			android:id="@+id/websiteToolTab"
+    			android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:orientation="vertical"
+    			android:paddingBottom="@dimen/activity_vertical_margin"
+    			android:paddingLeft="@dimen/activity_horizontal_margin"
+    			android:paddingRight="@dimen/activity_horizontal_margin"
+    			android:paddingTop="@dimen/activity_vertical_margin">
+	
+    			<TextView
+        			android:layout_width="match_parent"
+        			android:layout_height="wrap_content"
+        			android:gravity="center_horizontal"
+        			android:textSize="@dimen/websiteDetail_title_margin"
+        			android:textColor="@color/purple"
+        			android:text="@string/welcome" />
+
+   				<EditText 
+        			android:id="@+id/domainInput"
+        			android:singleLine="true"
+        			android:layout_width="fill_parent"
+        			android:layout_height="wrap_content"
+        			android:text="@string/domain_name"/>
+    			<Button
+        			android:id="@+id/domainSubmitButton"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:layout_gravity="right"
+        			android:gravity="right"
+        			android:text="@string/submitBtn_name" /> 		
+
+    			<TableLayout 
+        			android:layout_width="match_parent"
+        			android:layout_height="wrap_content">
+        			<TableRow 
+            			android:layout_width="wrap_content"
+            			android:layout_gravity="center_horizontal">
+            			<Button 
+                			android:id="@+id/friendLinkBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/friendLink_name"/>
+            			<Button 
+                			android:id="@+id/websiteFastBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/websiteFast_name"/>
+            			<Button 
+                			android:id="@+id/websitePingBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/websitePing_name"/>
+        			</TableRow>
+        			<TableRow
+            			android:layout_width="match_parent"
+        				android:layout_height="wrap_content">
+            			<Button 
+                			android:id="@+id/routeBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/route_name"/>
+            			<Button 
+                			android:id="@+id/dnsBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/dns_name"/>
+            			<Button 
+                			android:id="@+id/pageBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/pageQuery_name"/>
+        			</TableRow>
+        			<TableRow
+						android:layout_width="match_parent"
+        				android:layout_height="wrap_content">
+            			<Button 
+                			android:id="@+id/prBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/prQuery_name"/>
+            			<Button 
+               				android:id="@+id/deadLinkBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/deadLink_name"/>
+            			<Button 
+                			android:id="@+id/alexaBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/alexa_name"/>
+        			</TableRow>
+        			<TableRow
+            			android:layout_width="match_parent"
+        				android:layout_height="wrap_content">
+            			<Button 
+                			android:id="@+id/visitBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="直接访问"/>
+            			<Button 
+                			android:id="@+id/spiderBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/spider_name"/>
+            			<Button 
+                			android:id="@+id/whoisBtn"
+                			android:layout_width="wrap_content"
+                			android:layout_height="wrap_content"
+                			android:text="@string/whois_name"/>
+        			</TableRow>
+    			</TableLayout>
+			</LinearLayout>
+			<!-- 站长工具Tab页结束 -->
+			<!-- 关于标签页 -->
+			<RelativeLayout 
+			    android:id="@+id/websiteToolAboutTab"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent">
+    			<TextView 
+    			    android:id="@+id/websiteToolAboutTitle"
+    			    android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_horizontal"
+			        android:textSize="@dimen/websiteDetail_title_margin"
+			        android:textColor="@color/purple"
+			        android:paddingTop="20dp"
+			        android:text="关于站长工具"/>
+			    <TextView 
+			        android:id="@+id/websiteToolAboutContent"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:paddingTop="50dp"
+			        android:paddingLeft="5dp"
+			        android:paddingRight="5dp"
+			        android:textSize="18sp"
+			     	android:layout_below="@id/websiteToolAboutTitle"
+			        android:text="        自己编写的站长工具，不会画图，界面比较简陋。其中的数据有直接调用接口得到的，有抓取百度、谷歌、gongju.baidu.com、http://tool.chinaz.com、和alexa的。部分界面做了信息 提取，放在自定义的页面中，有的是直接展示的webview，功能大致完成。如果遇到问题mailto:wangxuemeng90@126.com\n易踪网（yeetrack.com),每天进步一点点！"
+			        />
+			    <TextView 
+			        android:id="@+id/websiteToolAboutMeSite"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_below="@id/websiteToolAboutContent"
+			        android:paddingTop="20dp"
+			     
+			        android:textSize="18sp"/>
+			</RelativeLayout>
+		</FrameLayout>
+
+		<TabWidget
+		    android:id="@android:id/tabs"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="bottom|center"
+		    android:background="#4d4d4d"
+		    android:gravity="bottom|center"
+		    android:tabStripEnabled="false"
+		    android:layout_marginBottom="-8dp">
+ 
+        </TabWidget>
+	</TabHost>
+
 </LinearLayout>
-</ScrollView>

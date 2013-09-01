@@ -82,7 +82,11 @@ public class WhoisActivity extends Activity
 	    
 	    Intent intent = this.getIntent();
 	    Bundle bundle = intent.getBundleExtra("data");
-	    domain = bundle.getString("domain");
+	    if(bundle == null)
+	    	domain = "yeetrack.com";
+	    else
+	    	domain = bundle.getString("domain");
+	    
 	    
 	    domainTextView = (TextView)findViewById(R.id.whoisDomainName);
 	    registrarTextView = (TextView)findViewById(R.id.whoisRegistrar);

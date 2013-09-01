@@ -20,6 +20,7 @@ import android.view.Window;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author xuemeng
@@ -96,6 +97,10 @@ public class DNSActivity extends Activity
                         break;
                     //点击了保存按钮
                     case R.id.dnsSaveButton:
+                    	if(Utils.saveShot(System.currentTimeMillis()+"-domainDns", DNSActivity.this))
+                    		Toast.makeText(DNSActivity.this, "截图保存成功", Toast.LENGTH_SHORT).show();
+                    	else 
+                    		Toast.makeText(DNSActivity.this, "截图失败", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

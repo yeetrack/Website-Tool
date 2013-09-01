@@ -2,8 +2,11 @@ package com.yeetrack.websitetool;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,16 +14,32 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.*;
 
-public class MainActivity extends Activity
+
+@SuppressWarnings("deprecation")
+public class MainActivity extends TabActivity
 {
+	
     String currentPath;
+    
+    /**
+	 * 域名检测输入框
+	 */
+    private EditText domainRegistEditText;
+    /**
+     * 域名检测提交按钮
+     */
+    private Button domainRegistSubmitButton;
 	/**
 	 * 域名输入框
-	 */
+	 */ 
 	private EditText domainEditText;
 	
 	/**
@@ -87,11 +106,38 @@ public class MainActivity extends Activity
 	 * whois 按钮
 	 */
 	private Button whoisButton;
+	
+	/**
+	 * 有关tab页面，我的网址
+	 */
+	private TextView mysiteView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		//使用TabActivity的话，就不要设置布局文件了
 		setContentView(R.layout.activity_main);
+		
+		TabHost tabHost = getTabHost();
+		tabHost.setup();
+		
+		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("域名检测").setContent(R.id.domainRegistTab));
+		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("域名seo").setContent(R.id.websiteToolTab));
+		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("关于").setContent(R.id.websiteToolAboutTab));
+		
+		
+		
+		//设置tab widget中文字颜色
+		TabWidget tabWidget = getTabWidget();
+		for(int i=0; i<=tabWidget.getChildCount()-1;i++)
+		{
+			LinearLayout linearLayout = (LinearLayout) tabWidget.getChildAt(i);
+			TextView textView =  (TextView) linearLayout.getChildAt(1);
+			textView.setTextColor(Color.WHITE);
+			textView.setTextSize(15);
+		}
+        
+		
         currentPath = getApplicationContext().getFilesDir().getAbsolutePath();
 		domainEditText = (EditText)findViewById(R.id.domainInput);
         //默认读取files目录下的domain.txt文件中的域名
@@ -101,6 +147,7 @@ public class MainActivity extends Activity
             BufferedReader br = new BufferedReader(fileReader);
             String  name = br.readLine();
             domainEditText.setText(name);
+            
             fileReader.close();
         } catch (FileNotFoundException e) {
             //没有该文件，使用默认的yeetrack.com
@@ -120,7 +167,15 @@ public class MainActivity extends Activity
 		spiderButton = (Button)findViewById(R.id.spiderBtn);
 		whoisButton = (Button)findViewById(R.id.whoisBtn);
 		
-		Toast.makeText(this, "注意本工具直接从互联网抓取数据，可能会消耗大量流量，尽量在wifi环境下使用", Toast.LENGTH_LONG).show();		
+		domainRegistEditText = (EditText)findViewById(R.id.domainRegistInput);
+		domainRegistSubmitButton = (Button)findViewById(R.id.domainRegistSubmitButton);
+		
+		mysiteView = (TextView)findViewById(R.id.websiteToolAboutMeSite);
+		//mysiteView.setText("易踪网("+Html.fromHtml("<a href='http://www.yeetrack.com'>yeetrack.com</a>")+")，每天进步一点点！");
+		mysiteView.setText(Html.fromHtml("<a href='http://www.yeetrack.com'>yeetrack.com</a>"));
+		mysiteView.setMovementMethod(LinkMovementMethod.getInstance());
+		
+		Toast.makeText(this, "注意本工具直接从互联网抓取数据，可能会消耗大量流量，尽量在wifi环境下使用", Toast.LENGTH_SHORT).show();		
 		//为输入框添加点击监听，点击后清空默认
 		domainEditText.setOnClickListener(new OnClickListener()
 		{
@@ -142,7 +197,7 @@ public class MainActivity extends Activity
 			public void onClick(View arg0)
 			{
 				// 需要启动一个页面，来展示结果
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
                     //将域名写入文件
                     writeDomain2Disk();
@@ -164,7 +219,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -183,7 +238,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -202,7 +257,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -221,7 +276,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -240,7 +295,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -259,7 +314,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -278,7 +333,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -297,7 +352,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -316,7 +371,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -335,7 +390,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -354,7 +409,7 @@ public class MainActivity extends Activity
 		{
 			public void onClick(View v)
 			{
-				if(checkDomain())
+				if(checkDomain(domainEditText.getText().toString()))
 				{
 					Bundle detailBundle = new Bundle();
 					String domainString = domainEditText.getText().toString();
@@ -366,7 +421,7 @@ public class MainActivity extends Activity
 			}
 		});
 		
-		//为综合查询按钮添加监听
+		//打开浏览器访问
 		integrated2Button.setOnClickListener( new OnClickListener()
 				{
 					
@@ -374,7 +429,7 @@ public class MainActivity extends Activity
 					public void onClick(View arg0)
 					{
 						// 需要启动一个页面，来展示结果
-						if(checkDomain())
+						if(checkDomain(domainEditText.getText().toString()))
 						{
 							Intent intent = new Intent();  
 				            intent.setAction(Intent.ACTION_VIEW);  
@@ -384,6 +439,21 @@ public class MainActivity extends Activity
 						}
 					}
 				});
+		//为域名检测按钮添加监听
+		domainRegistSubmitButton.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				String domainString = domainRegistEditText.getText().toString();
+				Bundle bundle = new Bundle();
+				bundle.putString("domain", domainString);
+				Intent intent = new Intent(MainActivity.this, DomainRegistActivity.class);
+				intent.putExtra("data", bundle);
+				startActivity(intent);
+			}
+		});
 
 	}
 
@@ -433,9 +503,8 @@ public class MainActivity extends Activity
 	/**
 	 * 检测域名输入是否合法
 	 */
-	public boolean checkDomain()
+	public boolean checkDomain(String domain)
 	{
-		String domain = domainEditText.getText().toString();
 		Toast toast = Toast.makeText(this, "提示", Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.CENTER, 0, 0);
 		if(domain == null || "".equals(domain))

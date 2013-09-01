@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageButton
+                android:id="@+id/domainRegistBackButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/back"
+                android:layout_alignParentLeft="true">
+        </ImageButton>
+
+		<TextView 
+  	    	android:layout_width="match_parent"
+  	    	android:layout_height="wrap_content"
+  	    	android:textColor="@color/purple"
+        	android:layout_marginTop="10sp"
+        	android:layout_marginBottom="15sp"
+        	android:gravity="center_horizontal"
+        	android:textSize="@dimen/websiteDetail_title_margin"
+  	    	android:text="域名检测结果"/>
+
+        <ImageButton
+                android:id="@+id/domainRegistSaveButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+            	android:background="@drawable/save">
+        </ImageButton>
+
+    </RelativeLayout>
+    
+  	
+    <ListView 
+            android:id="@+id/domainListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+    </ListView>
+    
+
+</LinearLayout>

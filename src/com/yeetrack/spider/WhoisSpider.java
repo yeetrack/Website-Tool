@@ -82,12 +82,14 @@ public class WhoisSpider
         {
 	        HttpResponse response = httpClient.execute(get);
 	        String responseHtml = HttpTool.getEntityContent(response.getEntity());
+	        //去掉空格
+	        responseHtml = responseHtml.replace("&nbsp;", "");
 	        int domainStart = responseHtml.indexOf("registryData\">Domain Name:");
 	        int domainEnd = responseHtml.indexOf("<br>", domainStart);
 	        if(domainStart!=-1 && domainEnd!=-1)
 	        	domainResult = responseHtml.substring(domainStart+26, domainEnd);
 	        else
-	        	domainResult = "null";
+	        	domainResult = domain;
 	        int registrarStart = responseHtml.indexOf("Registrar:");
 	        int registrarEnd = responseHtml.indexOf("<br>", registrarStart);
 	        if(registrarStart!=-1 && registrarEnd!=-1)
